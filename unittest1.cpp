@@ -1,4 +1,5 @@
 
+
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include "Database.h"
@@ -35,6 +36,55 @@ namespace TestFramework1
             Database::MyDatabase db;
             Table* isTableEmpty == db.query("test","","");
             Assert::IsNull(isTableEmpty);
+
+
+            Table::MyTable t; 
+            bool isAdded = t.add("test");
+            Assert::AreEqual(isAdded,true);
+
+            Table::MyTable t; 
+            bool isDeleted = t.del("test");
+            Assert::AreEqual(isDeleted,true);
+
+            Table::MyTable t; 
+            bool isInserted = t.insert(nullptr);
+            Assert::AreEqual(isInserted,true);
+
+            Table::MyTable t; 
+            vector<string> attributes == t.getAttributes();
+            Assert::IsNull(attributes);
+
+            Table::MyTable t; 
+            int tableSizeCheck = t.getSize(); 
+            Assert::IsNull(tableSizeCheck);
+
+            Table::MyTable t;
+            Record* isIterate = t.iterate(nullptr);
+            Assert::IsNull(isIterate);
+
+            Table::MyTable t; 
+            bool isKeyAssigned = t.assignKey("test");
+            Assert::AreEqual(isKeyAssigned,true);
+
+            Table::MyTable t; 
+            Table* testCrossJoin = t.crossJoin(nullptr, nullptr);
+            Assert::IsNull(testCrossJoin);
+
+            Table::MyTable t; 
+            Table* testNaturalJoin = t.naturalJoin(nullptr, nullptr);
+            Assert::IsNull(testNaturalJoin);
+
+            Table::MyTable t; 
+            int testCount = t.count("test");
+            Assert::IsNull(testCount);
+
+            Table::MyTable t; 
+            int testMin = t.min("test");
+            Assert::IsNull(testMin);
+
+            Table::MyTable t; 
+            int testMax = t.max("test");
+            Assert::IsNull(testMax);
             
         }
         
@@ -42,8 +92,6 @@ namespace TestFramework1
         
     
         
-        
-  
         
         
     };
