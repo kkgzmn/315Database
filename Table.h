@@ -1,44 +1,102 @@
 #pragma once
 
-#include <string>
-#include <vector>
-#include "Record.h"
-
-using namespace std;
 
 
-namespace Database {
+#include "stdafx.h"
+#include "CppUnitTest.h"
+#include "Database.h"
+
+using namespace Microsfot::VisualStudio::CppUnitTestFramework;
+
+namespace TestFramework1
+{
+    TEST_CLASS(UnitTest1)
+    {
+    public:
+        
+        TEST_METHOD(TestMethod1)
+        {
+            using namespace Database;
+            Database::MyDatabase db;
+            bool isTableAdded == db.addTable("test",nullptr);
+            Assert::IsTrue(isTableAdded);
+            
+            
+            Database::MyDatabase db;
+            bool isTableDropped == db.dropTable("test");
+            Assert::IsTrue(isTableDropped);
+            
+            Database::MyDatabase db;
+            vector<string> tableList == db.listTables();
+            Assert::IsNull(tableList);
+            
+            Database::MyDatabase db;
+            vector<string> tables == db.getTables();
+            Assert::IsNull(tables);
+            
+            
+            Database::MyDatabase db;
+            Table* isTableEmpty == db.query("test","","");
+            Assert::IsNull(isTableEmpty);
 
 
-	class Table {
-	public:
-		Table::Table();
-		Table::Table(vector<string> attrNames);
+            Table::MyTable t; 
+            bool isAdded = t.add("test");
+            Assert::AreEqual(isAdded,true);
 
-		Table::~Table();
+            Table::MyTable t; 
+            bool isDeleted = t.del("test");
+            Assert::AreEqual(isDeleted,true);
 
-		bool Table::add(string attrName);
+            Table::MyTable t; 
+            bool isInserted = t.insert(nullptr);
+            Assert::AreEqual(isInserted,true);
 
-		bool Table::del(string attrName);
+            Table::MyTable t; 
+            vector<string> attributes == t.getAttributes();
+            Assert::IsNull(attributes);
 
-		bool Table::insert(Record* record);
+            Table::MyTable t; 
+            int tableSizeCheck = t.getSize(); 
+            Assert::IsNull(tableSizeCheck);
 
-		vector<string> Table::getAttributes();
+            Table::MyTable t;
+            Record* isIterate = t.iterate(nullptr);
+            Assert::IsNull(isIterate);
 
-		int Table::getSize();
+            Table::MyTable t; 
+            bool isKeyAssigned = t.assignKey("test");
+            Assert::AreEqual(isKeyAssigned,true);
 
-		Record* Table::iterate(int key);
+            Table::MyTable t; 
+            Table* testCrossJoin = t.crossJoin(nullptr, nullptr);
+            Assert::IsNull(testCrossJoin);
 
-		bool Table::assignKey(string attrName);
+            Table::MyTable t; 
+            Table* testNaturalJoin = t.naturalJoin(nullptr, nullptr);
+            Assert::IsNull(testNaturalJoin);
 
-		Table* Table::crossJoin(Table* table1, Table* table2);
+            Table::MyTable t; 
+            int testCount = t.count("test");
+            Assert::IsNull(testCount);
 
-		Table* Table::naturalJoin(Table* table, Table* table2);
-		
-		int Table::count(string attrName);
+            Table::MyTable t; 
+            int testMin = t.min("test");
+            Assert::IsNull(testMin);
 
-		int Table::min(string attrName);
+            Table::MyTable t; 
+            int testMax = t.max("test");
+            Assert::IsNull(testMax);
+            
+        }
+        
 
-		int Table::max(string attrName);
-	};
+        
+    
+        
+        
+  
+        
+        
+    };
 }
