@@ -139,6 +139,7 @@ namespace Database {
         }
         else{
             //if eligible, can just return
+		tableIn->key = keyName;
         }
     }
     
